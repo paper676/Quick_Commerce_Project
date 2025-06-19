@@ -107,8 +107,8 @@ module.exports.stripeWebhooks= async (req, res) => {
         event = stripe.webhooks.constructEvent(
             req.body, 
             sig, 
-            endpointSecret
-        );
+            process.env.STRIPE_WEDHOOK_SECRET
+      );
     } catch (err) {
       return res.status(400).send(`Webhook Error: ${err.message}`);
     }
@@ -141,7 +141,7 @@ module.exports.stripeWebhooks= async (req, res) => {
 
             const { orderId } = session.data[0].metadata;
 
-            await OrdersModel.findOneAndDelete(orderId)
+            await OrdersModel.findByIdAndDelete(orderId);
             break;
         } 
         default:
