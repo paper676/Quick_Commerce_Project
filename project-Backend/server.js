@@ -36,7 +36,7 @@ connectToCloudinary()
 
 //api endpoints
 
-app.get('/',(req,res)=>{res.send("hello");});
+app.get('/',(req,res)=>{res.send("Api is Running");});
 app.use('/api/user',UserRouter);
 app.use('/api/seller',SellerRouter);
 app.use('/api/product',ProductRouter);
