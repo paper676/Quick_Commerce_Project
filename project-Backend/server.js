@@ -4,7 +4,7 @@ const cors=require('cors');
 
 const port=process.env.PORT || 3000;
 
-const AllowedOrigins=['http://localhost:5173','https://quick-commerce-project-frontend.vercel.app/']
+const AllowedOrigins=['http://localhost:5173','https://quick-commerce-project-frontend.vercel.app']
 
 const express=require('express');
 const app=express();
