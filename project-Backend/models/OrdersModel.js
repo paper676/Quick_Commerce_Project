@@ -13,4 +13,4 @@ const orderSchema=new mongoose.Schema({
     isPaid:{type:Boolean,required:true,default:false}
 },{timestamps:true})
 
-module.exports=mongoose.model('order',orderSchema);
+module.exports=mongoose.models.order || mongoose.model('order',orderSchema);

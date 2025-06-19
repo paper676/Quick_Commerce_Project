@@ -13,4 +13,4 @@ const addressSchema = new mongoose.Schema({
     phone: { type: Number, required: true },
 })
 
-module.exports = mongoose.model('address', addressSchema);
+module.exports = mongoose.models.address || mongoose.model('address', addressSchema);
