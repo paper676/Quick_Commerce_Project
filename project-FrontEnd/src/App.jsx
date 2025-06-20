@@ -1,9 +1,6 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom'
 
-import Navbar from './components/Navbar/navbar';
-import Footer from './components/Footer/footer';
-import Midpage from './components/Midpage/midpage';
 import LandingPage from './pages/LandingPage/LandingPage';
 import LoginPage from './pages/Login/loginPage'
 import UserPage from './pages/Landing/UserPage'
