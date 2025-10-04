@@ -22,8 +22,8 @@ const AddressRouter = require('./routes/AddressRouter.js');
 const OrderRoter = require('./routes/OrderRouter.js');
 const { stripeWebhooks } = require('./controllers/OrderController.js');
 // const userRouts=require('./routes/user.routes')
-
 app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
+
 
 //defult middlewares
 app.use(express.json());
