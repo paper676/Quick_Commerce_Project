@@ -9,6 +9,23 @@ const AllowedOrigins=['http://localhost:5173','https://quick-commerce-project-fr
 const express=require('express');
 const app=express();
 
+app.use((req, res, next) => {
+  const originalCookie = res.cookie.bind(res);
+  res.cookie = function(name, value, options) {
+    console.log(`[res.cookie] ${req.method} ${req.originalUrl} => name=${name}, options=${JSON.stringify(options)}`);
+    return originalCookie(name, value, options);
+  };
+
+  res.on('finish', () => {
+    const sc = res.getHeader('set-cookie');
+    if (sc) {
+      console.log(`[SET-COOKIE HEADER] ${req.method} ${req.originalUrl} =>`, sc);
+    }
+  });
+
+  next();
+});
+
 const cookieParser=require('cookie-parser');
 //configs/connections
 const connectToDb=require('./configs/db');
