@@ -28,7 +28,14 @@ app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
 //defult middlewares
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
-app.use(cors({origin:AllowedOrigins,credentials:true}));
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    if(AllowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true
+}));
 app.use(cookieParser());
 //connections
 connectToDb()
