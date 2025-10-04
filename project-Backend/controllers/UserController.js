@@ -21,11 +21,11 @@ module.exports.register = async (req, res) => {
             password: hashedPassword,
         });
 
-        const token=jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'24h'},)
+        const token=jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'24h'})
         res.cookie('token',token,{
             httpOnly:true,
-            secure:process.env.NODE_ENV==='production',
-            sameSite:process.env.NODE_ENV==='production'?'none':'strict',
+            secure:true,
+            sameSite:'none',
             maxAge:6*60*60*1000
         })
 
@@ -52,9 +52,9 @@ module.exports.login = async (req, res) => {
         }
         const token=jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:'24h'},)
         res.cookie('token',token,{
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV==='production' ? 'none' : 'strict',
+            httpOnly:true,
+            secure:true,
+            sameSite:'none',
             maxAge:6*60*60*1000
         })
 
@@ -80,8 +80,8 @@ module.exports.logout = async (req, res) => {
     try {
         res.clearCookie('token',{
             httpOnly : true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+            secure: true,
+            sameSite: 'none',
         })
         return res.json({success:true,message:"User LoggedOut!"})
     } catch (error) {
